@@ -10,7 +10,8 @@ Model v1 – Custom CNN (User 1)
 Model v1 is a custom-built Convolutional Neural Network (CNN) designed for binary classification (Cats vs Dogs). It was intentionally kept lightweight to ensure fast training and easy experimentation.
 
 Architecture Summary
-Conv2D(64 filters, 3×3 kernel, ReLU)
+Conv2D(64 filters, 3×3 kernel, ReLU) 
+
 Extracts low-level image patterns (edges, textures).
 MaxPooling2D
 Reduces spatial size and computation.
