@@ -1,1 +1,11 @@
 
+{
+    "test_loss": 0.06094761937856674,
+    "test_accuracy": 0.9775000214576721,
+    "f1_score": 0.4888485215460692,
+    "epochs": 5,
+    "train_accuracy_last": 0.9695454835891724,
+    "train_loss_last": 0.07758097350597382,
+    "val_accuracy_last": 0.9760000109672546,
+    "val_loss_last": 0.0633043721318245
+}
