@@ -1,31 +1,25 @@
-import tensorflow as tf
 from tensorflow.keras.applications import ResNet50
-from tensorflow.keras import layers, models
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
 
+def get_model_v2(IMG_SIZE=128, NUM_CLASSES=2):
+    base = ResNet50(
+        include_top=False,
+        weights='imagenet',
+        input_shape=(IMG_SIZE, IMG_SIZE, 3),
+        pooling='avg'
+    )
 
+    for layer in base.layers[:-10]:
+        layer.trainable = False
+    for layer in base.layers[-10:]:
+        layer.trainable = True
 
-# Load base model (exclude top layers)
-base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+    model = Sequential()
+    model.add(base)
+    model.add(Dropout(0.5))
+    model.add(Dense(256, activation='relu'))
+    model.add(Dropout(0.3))
+    model.add(Dense(NUM_CLASSES, activation='softmax'))
 
-# Freeze base layers initially
-base_model.trainable = False
-
-# Build model with embedded normalization
-model = models.Sequential([
-    base_model,
-    layers.GlobalAveragePooling2D(),
-    layers.Dropout(0.5),  # Regularization
-    layers.Dense(512, activation='relu'),
-    layers.Dense(1, activation='sigmoid')  # Binary classification
-])
-
-
-
-model.compile(
-    optimizer='sgd', loss='binary_crossentropy', metrics=['accuracy'] 
-)
-
-callbacks = [
-    tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True),
-    tf.keras.callbacks.ModelCheckpoint('ResNet50-Based Model.h5', monitor='val_accuracy', save_best_only=True)
-]
+    return model
