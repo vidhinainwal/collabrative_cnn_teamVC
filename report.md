@@ -56,12 +56,99 @@ Ideal choice for Model v2 improvements.
 
 
 – Dataset descriptions
-User 1-
-Cat and Dog
+Dataset Used for Model v1 (User 1)
 
-User 2
-Dogs vs. Cats Redux: Kernels Edition
-We are excited to bring back the infamous Dogs vs. Cats classification problem as a playground competition with kernels enabled. Although modern techniques may make light of this once-difficult problem, it is through practice of new techniques on old datasets that we will make light of machine learning's future challenges.
+Source: Kaggle Cat vs Dog dataset (pre-sorted folder structure)
+
+Structure
+
+The dataset is organized in a clean directory format:
+
+training_set/
+    cats/
+    dogs/
+test_set/
+    cats/
+    dogs/
+
+Characteristics
+
+Type: Supervised classification
+
+Classes: 2 (Cat, Dog)
+
+Labeling Method: Inferred directly from folder names
+
+Typical Image Size: Varies (resized to 256×256 for training)
+
+Dataset Size: Medium (~2000–5000 images, depending on subset used)
+
+Why this dataset?
+
+Simple to load using image_dataset_from_directory()
+
+Ideal for building a baseline model
+
+Minimal preprocessing required
+
+Good for training a custom CNN from scratch
+
+This dataset helped create Model v1, a lightweight CNN that establishes the baseline classification performance.
+
+Dataset Used for Model v2 (User 2)
+
+Source: Dogs vs Cats Redux: Kernels Edition (Kaggle Challenge Dataset)
+
+Structure
+
+This dataset is provided as zipped files:
+
+train.zip
+test.zip
+
+
+After extraction:
+
+train/
+    cat.0.jpg
+    dog.1.jpg
+    ...
+test/
+    1.jpg
+    2.jpg
+    ...
+
+Characteristics
+
+Type: Large-scale supervised classification
+
+Classes: Cat, Dog
+
+Labels: Extracted from filenames
+
+"cat.123.jpg" → cat
+
+"dog.456.jpg" → dog
+
+Image Count (Train): ~25,000
+
+Image Count (Test): ~12,500
+
+Image Conditions: Highly diverse (breeds, angles, occlusions)
+
+Resolution: Varies widely; resized to 128×128
+
+Preprocessing Needed:
+
+unzip archives
+
+read with OpenCV
+
+convert BGR→RGB
+
+resize
+
+one-hot encode labels
 
 
 – Metrics on both datasets
