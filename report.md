@@ -169,4 +169,82 @@ one-hot encode labels
 
 
 – Metrics on both datasets
+
 – Observations on generalization and domain shift
+1. Generalization Differences Between Model v1 and Model v2
+Model v1 (Custom CNN) – Weaker Generalization
+
+Trained on a smaller, cleaner dataset with limited variation.
+
+Performs well on training/validation splits but struggles when encountering images with:
+
+unusual lighting
+
+different breeds
+
+occlusions
+
+cluttered backgrounds
+
+This shows overfitting to the narrow training domain and difficulty generalizing to more realistic images.
+
+Model v2 (ResNet50 Transfer Learning) – Stronger Generalization
+
+Benefits from ImageNet pretraining, which exposes the model to:
+
+millions of images
+
+varied objects, textures, and shapes
+
+As a result, Model v2 generalizes far better to unseen cats and dogs, even those with:
+
+complex backgrounds
+
+challenging angles
+
+high intra-class variance
+
+Model v2 maintains high F1-score across different subsets, indicating robust, consistent performance.
+
+2. Domain Shift Observations
+What is Domain Shift?
+
+Domain shift occurs when the training dataset and the testing dataset do not follow the same distribution, leading to inevitable performance drops.
+
+Domain Shift in Model v1
+
+Model v1 was trained on a simpler, pre-sorted benchmark dataset, where:
+
+cats and dogs are often centered
+
+backgrounds are cleaner
+
+image quality is consistent
+
+When tested on user 2’s dataset (larger, messier, more diverse), Model v1 would likely show:
+
+reduced accuracy
+
+higher misclassification
+
+instability across samples
+
+This highlights sensitivity to distribution changes.
+
+Domain Shift in Model v2
+
+Model v2, trained on a much larger and more diverse dataset, exhibits far less sensitivity to domain shift.
+
+Transfer learning further reduces domain shift impact because pretrained layers already encode:
+
+edges
+
+textures
+
+high-level semantic features
+
+As a result:
+
+Even when faced with new cat/dog images that differ from training data, Model v2 maintains high performance.
+
+Domain mismatch affects it less severely than Model v1.
