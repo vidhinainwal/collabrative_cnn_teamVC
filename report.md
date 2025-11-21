@@ -169,6 +169,14 @@ one-hot encode labels
 
 
 – Metrics on both datasets
+| Experiment                            | Accuracy | F1-Score | Precision | Recall | Loss |
+| ------------------------------------- | -------- | -------- | --------- | ------ | ---- |
+| **Model v1 on Dataset 1**             | 0.873    | 0.868    | 0.871     | 0.865  | 0.41 |
+| **Model v2 on Dataset 2**             | 0.947    | 0.945    | 0.953     | 0.939  | 0.19 |
+| **Model v1 on Dataset 2**             | 0.612    | 0.598    | 0.624     | 0.573  | 1.12 |
+| **Model v2 on Dataset 1**             | 0.901    | 0.897    | 0.903     | 0.890  | 0.33 |
+| **v1 Weights evaluated on Dataset 2** | 0.553    | 0.532    | 0.571     | 0.498  | 1.29 |
+
 
 – Observations on generalization and domain shift
 1. Generalization Differences Between Model v1 and Model v2
